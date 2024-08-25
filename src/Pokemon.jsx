@@ -4,10 +4,13 @@ import PokemonCards from './PokemonCards';
 const Pokemon = () => {
 
     const [pokemon, setPokemon] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const [search, setSearch] = useState('');
 
 
 
-    const API = 'https://pokeapi.co/api/v2/pokemon?limit=24';
+    const API = 'https://pokeapi.co/api/v2/pokemon?limit=124';
 
     const fetchPokemon = async () => {
         try {
@@ -28,9 +31,12 @@ const Pokemon = () => {
             console.log(detailedResponse);
 
             setPokemon(detailedResponse);
+            setLoading(false);
 
         } catch (error) {
             console.log(error);
+            setLoading(false);
+            setError(error);
         }
     }
 
@@ -40,18 +46,55 @@ const Pokemon = () => {
     }, []);
 
 
+
+     // search functionanlity
+
+    const searchData = pokemon.filter((currPokemon) =>
+        currPokemon.name.toLowerCase().includes(search.toLowerCase())
+    );
+
+
+    if (loading) {
+        return (
+            <div className='loading'>
+                <p>Loading...</p>
+            </div>
+        )
+    }
+
+
+
+    if (error) {
+        return (
+            <div className='Error'>
+                <p>{error.message} ☹</p>
+            </div>
+        )
+    }
+
+
     return (
         <section>
-                <header className='header'>
-                    <h2>Pokemon Cards Once Again</h2>
-                </header>
-                    <ul className='grid-col-4'>
-                        {
-                            pokemon.map((currPokemon) => {
-                                return <PokemonCards key={currPokemon.id} pokemonData={currPokemon} />
-                            })
-                        }
-                    </ul>
+            <header className='header'>
+                <h2>Pokemon Cards Once Again</h2>
+            </header>
+
+            <div className="pokemon-search">
+                <input
+                    type="text"
+                    placeholder='search pokemon'
+                    className='search'
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)} />
+            </div>
+
+            <ul className='grid-col-4'>
+                {
+                    searchData.map((currPokemon) => {
+                        return <PokemonCards key={currPokemon.id} pokemonData={currPokemon} />
+                    })
+                }
+            </ul>
         </section>
     )
 }
