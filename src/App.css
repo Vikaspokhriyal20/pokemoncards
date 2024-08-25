@@ -1,0 +1,77 @@
+*
+{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Rajdhani , calibri;
+}
+
+body
+{
+  background-color: #fff9f9;
+}
+
+li
+{
+  list-style: none;
+}
+
+
+.container
+{
+  width: 1000px;
+  margin-inline:auto;
+}
+
+.grid-col-4
+{
+  display: grid;
+  grid-template-columns: repeat(4 , 1fr);
+  justify-content: center;
+  gap: 2rem;
+  padding: 4rem 2rem;
+}
+
+.header
+{
+  text-align: center;
+  padding-top: 2rem;
+}
+
+.header h2
+{
+  letter-spacing: 1px;
+  font-size: 1.6rem;
+}
+
+@media screen and (max-width:850px) {
+  .grid-col-4
+  {
+    grid-template-columns: repeat(3,1fr);
+  }
+}
+
+@media screen and (max-width:700px) {
+  .grid-col-4
+  {
+    grid-template-columns: repeat(2,1fr);
+  }
+}
+
+@media screen and (max-width:400px) {
+  .grid-col-4
+  {
+    grid-template-columns: repeat(2,1fr);
+    gap: 1.2rem;
+  }
+}
+
+
+
+
+
+
+
+
+
+
