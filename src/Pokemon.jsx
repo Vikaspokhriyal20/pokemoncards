@@ -42,7 +42,6 @@ const Pokemon = () => {
 
     return (
         <section>
-            <div className="container">
                 <header className='header'>
                     <h2>Pokemon Cards Once Again</h2>
                 </header>
@@ -53,7 +52,6 @@ const Pokemon = () => {
                             })
                         }
                     </ul>
-            </div>
         </section>
     )
 }

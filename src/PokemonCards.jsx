@@ -11,9 +11,9 @@ const PokemonCards = ({ pokemonData }) => {
 
             <p className='pokemon-name'>{pokemonData.name}</p>
 
-            <p className='pokemon-type'>
+            <button className='pokemon-type'>
                 {pokemonData.types.map((curType) => curType.type.name).join(' , ')}
-            </p>
+            </button>
 
             <div className="pokemon-details">
                 <div>
@@ -29,8 +29,6 @@ const PokemonCards = ({ pokemonData }) => {
                     <p>Speed</p>
                 </div>
             </div>
-
-            <p className='Base-Experience'>Base-Experience : {pokemonData.base_experience}</p>
 
 
 
